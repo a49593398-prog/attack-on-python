@@ -43,6 +43,7 @@ cursor.execute('''
 conn.commit()
 
 
+
 def apply_for_loan(acc):
     print("\n----LOAN APPLICATION----")
     loan_amount = float(input("Enter the amount you need:- "))
@@ -57,6 +58,7 @@ def apply_for_loan(acc):
         ''',(acc,loan_amount,salary,loan_timing,current_time,'pending'))
     conn.commit()
     print(f"Application sent on {current_time}. Please wait for Admin approval.")
+
 
 
 def approve_loans():
@@ -98,6 +100,7 @@ def approve_loans():
             conn.commit()
 
 
+
 def open_account():
     print("\n----- OPEN NEW ACCOUNT -----")
     account = int(input('Enter your account number:- '))
@@ -116,6 +119,7 @@ def open_account():
     except sqlite3.IntegrityError :
         print('Error: Account number already exists')
         return
+
 
 
 def login():
@@ -139,6 +143,7 @@ def login():
         return None
 
 
+
 def admin_login():
     print('\n----- BANK MANAGER LOGIN -----')
     username = input('Enter Manager Username:- ') 
@@ -149,6 +154,7 @@ def admin_login():
     else:
         print('Invalid Manager')
         return None
+
 
 
 def admin(log):
@@ -192,6 +198,7 @@ def admin(log):
         conn.commit()
 
 
+
 def change_pin(acc):
     account = int(input('Enter your account number:- '))
     old_pin = int(input("Enter your current pin:- "))
@@ -209,6 +216,7 @@ def change_pin(acc):
         print("PIN changed successfully")
     else:
         print("Error. Account number or old PIN incorrect.\n try again")
+
 
 
 def users(acc):
@@ -258,6 +266,7 @@ def users(acc):
             else:
                 print("Insufficient funds or invalid amount.")
 
+
         elif choice == '4':
             cursor.execute("SELECT type, amount, timestamp FROM transactions WHERE account_number = ?", (acc,))
             history = cursor.fetchall()
@@ -284,6 +293,7 @@ def users(acc):
             break
         else:
             print("Invalid selection.")
+
 
 
 def welcome():
